@@ -1,13 +1,44 @@
+```html:Óptica Visión - Premium Tech & Catalog:index.html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica Visión - Catálogo & Consultas Directas</title>
-    <!-- Tailwind CSS desde CDN para despliegue inmediato sin Node.js -->
+    <title>Óptica Visión | Precision Optics & Visual Care</title>
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Microsoft Clarity (Reemplazá 'TU_CLARITY_ID' por tu ID de proyecto real) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0265d2',
+                            800: '#073b74',
+                            900: '#0b1d3a',
+                            gold: '#d97706',
+                            emerald: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Font Inter & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Microsoft Clarity (Placeholder) -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -15,107 +46,648 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "TU_CLARITY_ID");
     </script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-blue-900 tracking-wide">ÓPTICA VISIÓN</h1>
-            <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20pedir%20un%20turno%20de%20control" 
-               onclick="registrarEvento('Turno General');"
-               target="_blank" 
-               class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">
-                Pedir Turno
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 70% 30%, #1e3a8a 0%, #0f172a 70%);
+        }
+        .badge-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.05); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Toast Notification Log -->
+    <div id="analyticsToast" class="fixed top-20 right-4 z-50 transform translate-x-full transition-transform duration-300 ease-out max-w-sm w-full bg-slate-900/95 text-white p-4 rounded-xl shadow-2xl border border-slate-700/60 backdrop-blur-md flex items-start gap-3">
+        <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg shrink-0 mt-0.5">
+            <i data-lucide="database" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1 text-xs">
+            <div class="flex items-center justify-between font-semibold text-emerald-400 mb-0.5">
+                <span>Evento Registrado</span>
+                <span class="text-[10px] text-slate-400">Hace un instante</span>
+            </div>
+            <p id="toastMessage" class="text-slate-200">Enviando analítica a Google Sheets & Clarity...</p>
+            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-slate-400">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>Webhook Google Apps Script Activo</span>
+            </div>
+        </div>
+        <button onclick="hideToast()" class="text-slate-400 hover:text-white transition">
+            <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-800 via-brand-600 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="glasses" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-slate-900 block leading-none">ÓPTICA<span class="text-brand-600">VISIÓN</span></span>
+                    <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-400 block mt-0.5">Alta Precision Visual</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#catalogo" class="hover:text-brand-600 transition flex items-center gap-1">
+                    <i data-lucide="grid" class="w-4 h-4"></i> Catálogo
+                </a>
+                <a href="#cotizador" class="hover:text-brand-600 transition flex items-center gap-1">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Cotizador Express
+                </a>
+                <a href="#garantia" class="hover:text-brand-600 transition flex items-center gap-1">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Garantía
+                </a>
+                <a href="#contacto" class="hover:text-brand-600 transition flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i> Sucursales
+                </a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20solicitar%20un%20turno%20de%20control%20visual" 
+                   onclick="registrarEvento('Turno Presencial', 'HeaderCTA');"
+                   target="_blank" 
+                   class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-800 hover:from-brand-700 hover:to-brand-900 text-white font-semibold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-lg shadow-brand-600/20 transition hover:shadow-xl hover:scale-[1.02] active:scale-95">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>Agendar Turno</span>
+                </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-lg">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-3 text-sm font-medium">
+            <a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Catálogo</a>
+            <a href="#cotizador" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Cotizador Express de Receta</a>
+            <a href="#garantia" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Garantía & Tecnología</a>
+            <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20solicitar%20un%20turno%20de%20control%20visual" 
+               onclick="registrarEvento('Turno Presencial', 'MobileNav');" 
+               target="_blank"
+               class="block w-full text-center bg-brand-600 text-white font-semibold py-3 rounded-xl">
+               Agendar Turno por WhatsApp
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-blue-900 text-white py-12 px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl font-extrabold sm:text-4xl">Salud visual y estilo para todos los días</h2>
-            <p class="mt-3 text-blue-100 text-lg">Elegí tu armazón favorito y consultanos el precio en cuotas por WhatsApp en 1 clic.</p>
+    <section class="hero-gradient text-white relative overflow-hidden py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <!-- Abstract Background Effects -->
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                
+                <!-- Tag status -->
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-medium text-brand-100">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Nueva Colección 2026 • 3 y 6 Cuotas Sin Interés</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                    Tu visión con estilo, <br class="hidden sm:inline">
+                    <span class="bg-gradient-to-r from-sky-300 via-blue-200 to-amber-200 bg-clip-text text-transparent">precisión y tecnología.</span>
+                </h1>
+
+                <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Armazones internacionales, cristales multifocales de alta definición y examen refractivo computarizado. Asesoramiento inmediato vía WhatsApp.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#catalogo" class="w-full sm:w-auto px-7 py-3.5 bg-white text-slate-900 hover:bg-slate-100 font-bold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2 group">
+                        <span>Explorar Catálogo</span>
+                        <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition"></i>
+                    </a>
+                    <a href="#cotizador" class="w-full sm:w-auto px-7 py-3.5 bg-brand-600/40 hover:bg-brand-600/60 border border-brand-400/40 text-white font-semibold text-sm rounded-xl backdrop-blur-md transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4 text-sky-300"></i>
+                        <span>Cotizar Receta Express</span>
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="pt-8 grid grid-cols-3 gap-4 border-t border-white/10 text-left">
+                    <div>
+                        <div class="text-xl sm:text-2xl font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-400">Garantía Óptica</div>
+                    </div>
+                    <div>
+                        <div class="text-xl sm:text-2xl font-bold text-white">24 hs</div>
+                        <div class="text-xs text-slate-400">Entrega Express</div>
+                    </div>
+                    <div>
+                        <div class="text-xl sm:text-2xl font-bold text-white">+15k</div>
+                        <div class="text-xs text-slate-400">Pacientes Atendidos</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hero Image Preview Mockup -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden shadow-2xl border border-white/20 group">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=1000&q=80" 
+                         alt="Lentes Premium Óptica Visión" 
+                         class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider text-amber-300">Línea Premium</p>
+                                <p class="text-sm font-semibold">Titanium Series 2026</p>
+                            </div>
+                            <span class="px-2.5 py-1 bg-emerald-500/30 text-emerald-300 text-xs font-bold rounded-lg border border-emerald-400/30">Stock Disponible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Catálogo de Productos -->
-    <section class="max-w-6xl mx-auto px-4 py-12">
-        <h3 class="text-2xl font-bold text-center mb-8">Modelos Destacados</h3>
+    <!-- Main Catalog Section -->
+    <section id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 block mb-1">Catálogo Interactivo</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Modelos & Colecciones Destacadas</h2>
+            </div>
+            <p class="text-slate-500 text-sm max-w-md">
+                Seleccioná la categoría de tu interés o realizá una búsqueda rápida. Todos los valores incluyen asesoramiento personalizado.
+            </p>
+        </div>
 
-            <!-- Card Producto 1 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="Ray-Ban Aviator" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Tendencia</span>
-                    <h4 class="text-lg font-bold mt-1">Ray-Ban Aviator Classic</h4>
-                    <p class="text-gray-500 text-sm mt-1">Marco metálico dorado con cristales polarizados.</p>
-                    <a href="https://wa.me/5491100000000?text=Hola,%20busco%20info%20del%20Ray-Ban%20Aviator" 
-                       onclick="registrarEvento('Ray-Ban Aviator');"
-                       target="_blank" 
-                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
-                        Consultar por WhatsApp
-                    </a>
-                </div>
+        <!-- Filter Controls & Search Bar -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200/80 mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+            
+            <!-- Filter Pills -->
+            <div id="filterContainer" class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+                <!-- Dynamically Rendered Filters -->
             </div>
 
-            <!-- Card Producto 2 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=600&q=80" alt="Oakley Holbrook" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Deportivo</span>
-                    <h4 class="text-lg font-bold mt-1">Oakley Holbrook Sport</h4>
-                    <p class="text-gray-500 text-sm mt-1">Livianos, ergonómicos e ideales para uso diario.</p>
-                    <a href="https://wa.me/5491100000000?text=Hola,%20busco%20info%20del%20Oakley%20Holbrook" 
-                       onclick="registrarEvento('Oakley Holbrook');"
-                       target="_blank" 
-                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
-                        Consultar por WhatsApp
-                    </a>
-                </div>
+            <!-- Search Input -->
+            <div class="relative w-full md:w-72">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input type="text" 
+                       id="searchInput" 
+                       oninput="filterProducts()"
+                       placeholder="Buscar por marca o modelo..." 
+                       class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
             </div>
 
-            <!-- Card Producto 3 -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80" alt="Lentes Multifocales" class="w-full h-48 object-cover">
-                <div class="p-5">
-                    <span class="text-xs font-bold text-red-600 uppercase tracking-wider">Promoción 2x1</span>
-                    <h4 class="text-lg font-bold mt-1">Lentes Multifocales Premium</h4>
-                    <p class="text-gray-500 text-sm mt-1">Cristales de alta definición + Armazón a elección.</p>
-                    <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20la%20promo%20de%20Multifocales" 
-                       onclick="registrarEvento('Multifocales Promo');"
-                       target="_blank" 
-                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
-                        Consultar por WhatsApp
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically Populated by JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 mt-6">
+            <i data-lucide="frown" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
+            <h3 class="text-lg font-bold text-slate-800">No encontramos resultados</h3>
+            <p class="text-slate-500 text-sm mt-1">Intentá cambiar los términos de búsqueda o filtros.</p>
+        </div>
+
+    </section>
+
+    <!-- Cotizador Express de Recetas (Interactive Feature) -->
+    <section id="cotizador" class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="inline-block px-3 py-1 bg-brand-500/20 text-sky-300 text-xs font-bold rounded-full uppercase tracking-wider mb-2">Servicio Exclusivo</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Cotizador de Receta Oftálmica</h2>
+                <p class="text-slate-400 text-sm mt-2">
+                    Seleccioná las características de tus cristales y enviá tu orden de trabajo directamente a nuestros especialistas por WhatsApp.
+                </p>
+            </div>
+
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+                <form id="recipeForm" onsubmit="handleQuoteSubmit(event)" class="space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        
+                        <!-- Step 1: Tipo de Lente -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">1. Tipo de Lente</label>
+                            <select id="lensType" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="Monofocal (Visión Lejos o Cerca)">Monofocal (Lejos / Cerca)</option>
+                                <option value="Bifocal Tradicional">Bifocal</option>
+                                <option value="Multifocal Digital Premium">Multifocal Digital Premium</option>
+                                <option value="Lentes de Contacto">Lentes de Contacto</option>
+                            </select>
+                        </div>
+
+                        <!-- Step 2: Tratamiento -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">2. Tratamiento del Cristal</label>
+                            <select id="lensTreatment" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="Antirreflex Tradicional">Antirreflex Estándar</option>
+                                <option value="Filtro Luz Azul (Blue Cut / Pantallas)">Blue Cut (Filtro Pantallas)</option>
+                                <option value="Fotocromático (Transition)">Fotocromático (Sol/Sombra)</option>
+                                <option value="Polarizado de Sol">Polarizado con Graduación</option>
+                            </select>
+                        </div>
+
+                        <!-- Step 3: Graduación aprox u observaciones -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">3. Graduación Aprox.</label>
+                            <input type="text" id="lensDiopters" placeholder="Ej: Aumento bajo, +1.50, -2.25..." 
+                                   class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                    </div>
+
+                    <!-- Client Name / Notes -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre Completo</label>
+                            <input type="text" id="clientName" required placeholder="Tu nombre para el presupuesto" 
+                                   class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Comentarios o Consulta Adicional</label>
+                            <input type="text" id="clientNotes" placeholder="Tengo armazón propio, quiero armazón completo..." 
+                                   class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-2 text-xs text-slate-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Respuesta estimada en menos de 15 minutos</span>
+                        </div>
+                        <button type="submit" 
+                                class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-500/25 transition flex items-center justify-center gap-2 group">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Enviar Cotización a WhatsApp</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal de Detalle de Producto -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden border border-slate-100 transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            
+            <div class="relative">
+                <img id="modalImg" src="" alt="" class="w-full h-64 object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-slate-900/60 hover:bg-slate-900 text-white rounded-full transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <span id="modalBadge" class="absolute bottom-4 left-4 px-3 py-1 bg-brand-600 text-white text-xs font-bold rounded-lg shadow-md">
+                </span>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-4">
+                <div>
+                    <h3 id="modalTitle" class="text-2xl font-black text-slate-900"></h3>
+                    <p id="modalDesc" class="text-slate-600 text-sm mt-2 leading-relaxed"></p>
+                </div>
+
+                <!-- Product Specs Grid -->
+                <div class="grid grid-cols-2 gap-3 py-3 border-y border-slate-100 text-xs">
+                    <div class="flex items-center gap-2 text-slate-600">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                        <span>Material: Acetato / Titanio</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-600">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                        <span>Protección UV400 Certificada</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-600">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                        <span>Estuche Rígido + Paño Incluido</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-600">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-600"></i>
+                        <span>Garantía Oficial de 12 Meses</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-400 block">Precio Estimado</span>
+                        <span id="modalPrice" class="text-2xl font-black text-slate-900"></span>
+                    </div>
+
+                    <a id="modalWsBtn" href="#" target="_blank" onclick="" 
+                       class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center gap-2 text-sm">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Consultar por WhatsApp</span>
                     </a>
                 </div>
             </div>
 
         </div>
-    </section>
+    </div>
+
+    <!-- Floating WhatsApp Action Bar (Mobile & Desktop) -->
+    <div class="fixed bottom-6 right-6 z-30">
+        <a href="https://wa.me/5491100000000?text=Hola,%20quisiera%20hacer%20una%20consulta%20general" 
+           onclick="registrarEvento('Consulta Flotante', 'FloatingButton');" 
+           target="_blank"
+           class="flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-white p-4 sm:px-5 sm:py-3.5 rounded-full shadow-2xl shadow-emerald-500/40 hover:scale-105 transition active:scale-95 group">
+            <i data-lucide="message-circle" class="w-6 h-6 animate-bounce"></i>
+            <span class="hidden sm:inline font-bold text-sm tracking-wide">¿Consultas? Asesor Online</span>
+        </a>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm">
-        <p>© 2026 Óptica Visión — Demo desarrollada por <strong class="text-white">ES AutoData Tech</strong></p>
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="glasses" class="w-6 h-6 text-brand-500"></i>
+                    <span class="text-lg font-bold text-white">ÓPTICA VISIÓN</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Especialistas en salud visual, cristales multifocales de alta tecnología y armazones de diseño exclusivo.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Horarios de Atención</h4>
+                <p class="text-xs text-slate-400">Lunes a Viernes: 09:00 a 19:00 hs</p>
+                <p class="text-xs text-slate-400 mt-1">Sábados: 09:00 a 13:00 hs</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Infraestructura Analytics</h4>
+                <p class="text-xs text-slate-500">
+                    Sistema con seguimiento automatizado de leads y logging en tiempo real potenciado por <strong class="text-white">ES AutoData Tech</strong>.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-900 text-center text-xs text-slate-600">
+            © 2026 Óptica Visión — Todos los derechos reservados.
+        </div>
     </footer>
 
-    <!-- Script de Captura de Clics -->
+    <!-- JavaScript Data Logic & Analytics Handler -->
     <script>
-        // Función para enviar eventos a Microsoft Clarity y a Google Sheet
-        function registrarEvento(nombreProducto) {
-            // 1. Registro directo en Microsoft Clarity (si está configurado el ID)
-            if (typeof clarity === "function") {
-                clarity("set", "producto_consultado", nombreProducto);
+        // Google Apps Script Endpoint URL
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec";
+
+        // Catalog Database
+        const products = [
+            {
+                id: 1,
+                name: "Ray-Ban Aviator Classic",
+                category: "Sol",
+                price: "$125.000",
+                badge: "Tendencia",
+                image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                description: "Marco metálico en tono dorado clásico con cristales polarizados de alta resistencia UV400."
+            },
+            {
+                id: 2,
+                name: "Oakley Holbrook Sport",
+                category: "Sol",
+                price: "$142.000",
+                badge: "Deportivo",
+                image: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=600&q=80",
+                description: "Diseño icónico estadounidense de alto rendimiento con lentes Plutonite y tecnología Prizm."
+            },
+            {
+                id: 3,
+                name: "Lentes Multifocales HD Premium",
+                category: "Ofertas",
+                price: "$180.000 (2x1)",
+                badge: "Promoción 2x1",
+                image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80",
+                description: "Graduación progresiva digital para visión nítida a corta, media y larga distancia en un solo cristal."
+            },
+            {
+                id: 4,
+                name: "Vogue Transparent Acetate",
+                category: "Recetados",
+                price: "$98.000",
+                badge: "Recetado",
+                image: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80",
+                description: "Armazón de acetato translúcido ultra liviano, ideal para uso prolongado en oficina y pantallas."
+            },
+            {
+                id: 5,
+                name: "Acuvue Oasys Hydraclear (6 unid)",
+                category: "Contacto",
+                price: "$45.000",
+                badge: "Contacto",
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+                description: "Lentes de contacto de reemplazo quincenal con humedad continua para ojos secos o fatigados."
+            },
+            {
+                id: 6,
+                name: "Armazón Titanium Flex Ultra",
+                category: "Recetados",
+                price: "$115.000",
+                badge: "Alta Gama",
+                image: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
+                description: "Estructura flexible e indeformable de titanio quirúrgico. Máxima durabilidad garantizada."
+            }
+        ];
+
+        let activeCategory = "Todos";
+
+        // Initializer
+        window.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderProducts(products);
+            lucide.createIcons();
+        });
+
+        // Filter Controls Render
+        function renderFilters() {
+            const categories = ["Todos", "Recetados", "Sol", "Contacto", "Ofertas"];
+            const container = document.getElementById("filterContainer");
+            
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat}')" 
+                        class="px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+                            activeCategory === cat 
+                            ? 'bg-brand-600 text-white shadow-md shadow-brand-600/20' 
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        }">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderFilters();
+            filterProducts();
+            registrarEvento(`Filtro Categoria: ${cat}`, 'CatalogFilter');
+        }
+
+        // Product Rendering Engine
+        function renderProducts(items) {
+            const grid = document.getElementById("productGrid");
+            const emptyState = document.getElementById("emptyState");
+
+            if (items.length === 0) {
+                grid.innerHTML = "";
+                emptyState.classList.remove("hidden");
+                return;
             }
 
-            // 2. Endpoint a Google Apps Script para guardar en Google Sheets
-            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec";
+            emptyState.classList.add("hidden");
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden h-52 bg-slate-100">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-md text-brand-800 text-[11px] font-bold rounded-lg shadow-sm">
+                                ${p.badge}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h4 class="text-base font-extrabold text-slate-900 group-hover:text-brand-600 transition">${p.name}</h4>
+                            <p class="text-slate-500 text-xs mt-1 line-clamp-2">${p.description}</p>
+                            <div class="mt-4 flex items-baseline justify-between">
+                                <span class="text-xs text-slate-400 font-medium">Precio Ref:</span>
+                                <span class="text-lg font-black text-slate-900">${p.price}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+                        <button onclick="openModal(${p.id})" 
+                                class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition">
+                            Ver Detalle
+                        </button>
+                        <a href="https://wa.me/5491100000000?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20${encodeURIComponent(p.name)}" 
+                           target="_blank"
+                           onclick="registrarEvento('${p.name}', 'CardWhatsAppClick');" 
+                           class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-600/20 transition flex items-center justify-center gap-1">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <span>Consultar</span>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
 
+        // Live Search Filter
+        function filterProducts() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const filtered = products.filter(p => {
+                const matchesCategory = activeCategory === "Todos" || p.category === activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+            renderProducts(filtered);
+        }
+
+        // Modal Functionality
+        function openModal(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById("modalImg").src = p.image;
+            document.getElementById("modalTitle").innerText = p.name;
+            document.getElementById("modalDesc").innerText = p.description;
+            document.getElementById("modalBadge").innerText = p.badge;
+            document.getElementById("modalPrice").innerText = p.price;
+
+            const wsBtn = document.getElementById("modalWsBtn");
+            wsBtn.href = `https://wa.me/5491100000000?text=Hola,%20quiero%20más%20detalles%20sobre%20el%20modelo%20${encodeURIComponent(p.name)}`;
+            wsBtn.onclick = () => registrarEvento(p.name, 'ModalWhatsAppClick');
+
+            const modal = document.getElementById("productModal");
+            const content = document.getElementById("modalContent");
+            
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                content.classList.remove("scale-95", "opacity-0");
+                content.classList.add("scale-100", "opacity-100");
+            }, 10);
+
+            registrarEvento(`Ver Modal: ${p.name}`, 'ModalOpen');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("productModal");
+            const content = document.getElementById("modalContent");
+            content.classList.remove("scale-100", "opacity-100");
+            content.classList.add("scale-95", "opacity-0");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+            }, 200);
+        }
+
+        // Quote Form Handler
+        function handleQuoteSubmit(e) {
+            e.preventDefault();
+            const type = document.getElementById("lensType").value;
+            const treatment = document.getElementById("lensTreatment").value;
+            const diopters = document.getElementById("lensDiopters").value || "Sin especificar";
+            const name = document.getElementById("clientName").value;
+            const notes = document.getElementById("clientNotes").value || "Sin observaciones";
+
+            const message = `*SOLICITUD DE COTIZACIÓN DE RECETA*\n\n` +
+                            `👤 *Nombre:* ${name}\n` +
+                            `👓 *Lente:* ${type}\n` +
+                            `✨ *Tratamiento:* ${treatment}\n` +
+                            `🔍 *Graduación:* ${diopters}\n` +
+                            `📝 *Notas:* ${notes}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Log Event to Google Sheets
+            registrarEvento(`Cotización Receta - ${type}`, 'CotizadorExpress');
+
+            // Redirect to WhatsApp
+            window.open(`https://wa.me/5491100000000?text=${encodedMessage}`, '_blank');
+        }
+
+        // Global Event Tracker for Google Apps Script & Toast Notification
+        function registrarEvento(nombreProducto, origen = 'Desconocido') {
+            // 1. Toast Visual Feedback
+            showToast(`Consultando: ${nombreProducto}`);
+
+            // 2. Microsoft Clarity Tracking Integration
+            if (typeof clarity === "function") {
+                clarity("set", "producto_consultado", nombreProducto);
+                clarity("set", "origen_evento", origen);
+            }
+
+            // 3. Google Apps Script Hook
             if (GOOGLE_SCRIPT_URL) {
                 const payload = {
-                    producto: nombreProducto,
+                    producto: `${nombreProducto} (${origen})`,
                     dispositivo: window.innerWidth < 768 ? "Móvil" : "Desktop",
                     fecha: new Date().toLocaleString("es-AR")
                 };
@@ -125,9 +697,38 @@
                     mode: "no-cors",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
-                }).catch(err => console.error("Error al enviar evento:", err));
+                }).catch(err => console.error("Error logging event:", err));
             }
+        }
+
+        // Toast Feedback Functions
+        function showToast(msg) {
+            const toast = document.getElementById("analyticsToast");
+            document.getElementById("toastMessage").innerText = msg;
+            toast.classList.remove("translate-x-full");
+            setTimeout(() => hideToast(), 4000);
+        }
+
+        function hideToast() {
+            document.getElementById("analyticsToast").classList.add("translate-x-full");
+        }
+
+        // Mobile Nav Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
         }
     </script>
 </body>
 </html>
+```
+
+### 🚀 ¿Qué novedades incluye esta versión mejorada?
+
+1. **Diseño Visual Ultra Profesional:** Estética de marca boutique con paleta en azul nocturno, dorados suaves y verdes esmeralda para los botones de conversión a WhatsApp.
+2. **Filtro y Búsqueda en Tiempo Real:** El usuario puede filtrar por categorías (*Todos, Recetados, Sol, Contacto, Ofertas*) o buscar marcas directamente por teclado sin recargar la página.
+3. **Cotizador Express de Recetas:** Un módulo interactivo donde el cliente selecciona tipo de lente (Monofocal, Multifocal), tratamiento y graduación aproximada para enviar una consulta personalizada por WhatsApp.
+4. **Modal de Detalle Interactivo:** Al presionar "Ver Detalle", abre un pop-up estilizado con especificaciones, garantía e imágenes.
+5. **Toast de Notificación de Eventos (Analytics en Vivo):** Cada vez que un usuario toca un producto, un filtro o cotiza una receta, aparece un pequeño panel flotante avisando que el evento está siendo transmitido a tu Google Apps Script en tiempo real.
+6. **Conexión Directa:** Ya incluye la URL de tu backend en Apps Script preconfigurada (`AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec`).
+
