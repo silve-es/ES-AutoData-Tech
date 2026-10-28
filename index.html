@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica Visión - Catálogo & Consultas Directas</title>
+    <!-- Tailwind CSS desde CDN para despliegue inmediato sin Node.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Microsoft Clarity (Reemplazá 'TU_CLARITY_ID' por tu ID de proyecto real) -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "TU_CLARITY_ID");
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-900 tracking-wide">ÓPTICA VISIÓN</h1>
+            <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20pedir%20un%20turno%20de%20control" 
+               onclick="registrarEvento('Turno General');"
+               target="_blank" 
+               class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">
+                Pedir Turno
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-900 text-white py-12 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-extrabold sm:text-4xl">Salud visual y estilo para todos los días</h2>
+            <p class="mt-3 text-blue-100 text-lg">Elegí tu armazón favorito y consultanos el precio en cuotas por WhatsApp en 1 clic.</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <h3 class="text-2xl font-bold text-center mb-8">Modelos Destacados</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card Producto 1 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="Ray-Ban Aviator" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Tendencia</span>
+                    <h4 class="text-lg font-bold mt-1">Ray-Ban Aviator Classic</h4>
+                    <p class="text-gray-500 text-sm mt-1">Marco metálico dorado con cristales polarizados.</p>
+                    <a href="https://wa.me/5491100000000?text=Hola,%20busco%20info%20del%20Ray-Ban%20Aviator" 
+                       onclick="registrarEvento('Ray-Ban Aviator');"
+                       target="_blank" 
+                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
+                        Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Producto 2 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=600&q=80" alt="Oakley Holbrook" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Deportivo</span>
+                    <h4 class="text-lg font-bold mt-1">Oakley Holbrook Sport</h4>
+                    <p class="text-gray-500 text-sm mt-1">Livianos, ergonómicos e ideales para uso diario.</p>
+                    <a href="https://wa.me/5491100000000?text=Hola,%20busco%20info%20del%20Oakley%20Holbrook" 
+                       onclick="registrarEvento('Oakley Holbrook');"
+                       target="_blank" 
+                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
+                        Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Producto 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80" alt="Lentes Multifocales" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-wider">Promoción 2x1</span>
+                    <h4 class="text-lg font-bold mt-1">Lentes Multifocales Premium</h4>
+                    <p class="text-gray-500 text-sm mt-1">Cristales de alta definición + Armazón a elección.</p>
+                    <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20la%20promo%20de%20Multifocales" 
+                       onclick="registrarEvento('Multifocales Promo');"
+                       target="_blank" 
+                       class="mt-4 block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition">
+                        Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm">
+        <p>© 2026 Óptica Visión — Demo desarrollada por <strong class="text-white">ES AutoData Tech</strong></p>
+    </footer>
+
+    <!-- Script de Captura de Clics -->
+    <script>
+        // Función para enviar eventos a Microsoft Clarity y/o a tu Google Sheet
+        function registrarEvento(nombreProducto) {
+            // 1. Registro directo en Microsoft Clarity (si está configurado el ID)
+            if (typeof clarity === "function") {
+                clarity("set", "producto_consultado", nombreProducto);
+            }
+
+            // 2. Endpoint opcional a Google Apps Script para guardar en Google Sheets
+            const GOOGLE_SCRIPT_URL = "TU_GOOGLE_APPS_SCRIPT_URL_AQUI";
+
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "TU_GOOGLE_APPS_SCRIPT_URL_AQUI") {
+                const payload = {
+                    producto: nombreProducto,
+                    dispositivo: window.innerWidth < 768 ? "Móvil" : "Desktop",
+                    fecha: new Date().toLocaleString("es-AR")
+                };
+
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.error("Error al enviar evento:", err));
+            }
+        }
+    </script>
+</body>
+</html>
