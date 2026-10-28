@@ -103,17 +103,17 @@
 
     <!-- Script de Captura de Clics -->
     <script>
-        // Función para enviar eventos a Microsoft Clarity y/o a tu Google Sheet
+        // Función para enviar eventos a Microsoft Clarity y a Google Sheet
         function registrarEvento(nombreProducto) {
             // 1. Registro directo en Microsoft Clarity (si está configurado el ID)
             if (typeof clarity === "function") {
                 clarity("set", "producto_consultado", nombreProducto);
             }
 
-            // 2. Endpoint opcional a Google Apps Script para guardar en Google Sheets
-            const GOOGLE_SCRIPT_URL = "const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec";
+            // 2. Endpoint a Google Apps Script para guardar en Google Sheets
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec";
 
-            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbyAQkgudAAma_rSI71vvWugzImipzfWc55hfN7WrCqpuJVx7LJ2KgGw7GkZCFRoFadT/exec") {
+            if (GOOGLE_SCRIPT_URL) {
                 const payload = {
                     producto: nombreProducto,
                     dispositivo: window.innerWidth < 768 ? "Móvil" : "Desktop",
